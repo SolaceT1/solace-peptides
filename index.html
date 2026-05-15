@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solace Peptides | Curated Collection</title>
+<style>
+:root{
+--bg:#05080f;--bg-card:#0b1221;--bg-card-hover:#111d32;--border:#1a2744;
+--border-glow:rgba(45,212,191,0.15);--text:#e2e8f0;--text-dim:#94a3b8;
+--text-faint:#64748b;--teal:#2dd4bf;--teal-dark:#0d9488;--gold:#fbbf24;
+--rose:#fb7185;--amber:#f59e0b;--purple:#a78bfa;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased
+}
+.hero{
+text-align:center;padding:4rem 1.5rem 2.5rem;position:relative;overflow:hidden;border-bottom:1px solid var(--border)
+}
+.hero::before{
+content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);
+width:700px;height:400px;background:radial-gradient(ellipse,rgba(45,212,191,0.07) 0%,transparent 60%);pointer-events:none
+}
+.brand{
+font-family:Georgia,'Times New Roman',serif;font-size:2.75rem;font-weight:700;
+background:linear-gradient(135deg,var(--teal) 0%,#5eead4 35%,var(--gold) 100%);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-0.02em;position:relative;z-index:1
+}
+.subtitle{
+color:var(--text-dim);font-size:0.85rem;margin-top:0.75rem;letter-spacing:0.25em;text-transform:uppercase;font-weight:400
+}
+.divider{
+width:50px;height:2px;background:linear-gradient(90deg,var(--teal),var(--gold));margin:1.5rem auto 0;border-radius:2px
+}
+.shipping-badge{
+display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.25rem;
+background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.2);
+border-radius:100px;padding:0.4rem 1rem;font-size:0.78rem;
+color:var(--gold);font-weight:600;letter-spacing:0.05em
+}
+.toggle-wrap{
+display:flex;justify-content:center;gap:0;margin:2rem auto 0;max-width:420px;padding:0 1.5rem
+}
+.toggle-btn{
+flex:1;padding:0.75rem 1.5rem;background:transparent;border:1px solid var(--border);color:var(--text-dim);
+font-family:inherit;font-size:0.85rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+cursor:pointer;transition:all 0.25s ease
+}
+.toggle-btn:first-child{border-radius:10px 0 0 10px;border-right:none}
+.toggle-btn:last-child{border-radius:0 10px 10px 0}
+.toggle-btn:hover{color:var(--text);background:rgba(30,41,59,0.4)}
+.toggle-btn.active{
+background:linear-gradient(135deg,var(--teal-dark),var(--teal));color:#0f172a;
+border-color:var(--teal);font-weight:700
+}
+.crypto-section{max-width:1000px;margin:2rem auto 0;padding:0 1.5rem}
+.crypto-card{
+background:linear-gradient(135deg,rgba(139,92,246,0.08),rgba(45,212,191,0.05));
+border:1px solid rgba(139,92,246,0.25);border-radius:16px;padding:1.75rem;position:relative;overflow:hidden
+}
+.crypto-card::before{
+content:'';position:absolute;top:0;left:0;right:0;height:2px;
+background:linear-gradient(90deg,var(--purple),var(--teal),var(--gold))
+}
+.crypto-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.crypto-title{font-size:1rem;font-weight:700;color:var(--purple);letter-spacing:0.02em}
+.crypto-sub{
+font-size:0.78rem;color:var(--text-dim);font-weight:500;margin-left:auto;
+text-transform:uppercase;letter-spacing:0.08em
+}
+.address-box{
+background:rgba(5,8,15,0.6);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;
+display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;
+font-family:'SF Mono','Consolas','Courier New',monospace;font-size:0.85rem;word-break:break-all
+}
+.address-label{
+font-size:0.7rem;font-weight:600;color:var(--text-faint);text-transform:uppercase;
+letter-spacing:0.1em;white-space:nowrap;flex-shrink:0
+}
+.address-value{color:var(--teal);font-weight:600;flex:1}
+.copy-btn{
+background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);color:var(--purple);
+padding:0.4rem 0.9rem;border-radius:8px;font-family:inherit;font-size:0.75rem;font-weight:600;
+cursor:pointer;transition:all 0.2s;white-space:nowrap;flex-shrink:0
+}
+.copy-btn:hover{background:rgba(139,92,246,0.25);color:#c4b5fd}
+.crypto-warnings{display:grid;gap:0.75rem}
+.crypto-warn{display:flex;gap:0.75rem;align-items:flex-start;font-size:0.82rem;color:var(--text-dim);line-height:1.5}
+.crypto-warn .icon{font-size:1.1rem;line-height:1;flex-shrink:0;margin-top:1px}
+.crypto-warn strong{color:var(--amber);font-weight:600}
+.crypto-warn.red .icon{color:var(--rose)}
+.crypto-warn.red strong{color:var(--rose)}
+.grid-wrap{max-width:1000px;margin:0 auto;padding:2rem 1.5rem 4rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem}
+.section-title{
+font-size:0.75rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;
+color:var(--text-faint);margin-bottom:1.25rem;display:flex;align-items:center;gap:0.75rem
+}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.customs-warning{
+background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(251,191,36,0.04));
+border:1px solid rgba(245,158,11,0.25);border-radius:12px;padding:1.25rem 1.5rem;
+margin-bottom:1.5rem;display:flex;gap:1rem;align-items:flex-start
+}
+.customs-warning .icon{font-size:1.5rem;line-height:1;flex-shrink:0}
+.customs-warning .body{flex:1}
+.customs-warning .head{
+font-size:0.85rem;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.35rem
+}
+.customs-warning p{font-size:0.82rem;color:var(--text-dim);line-height:1.5}
+.customs-warning p strong{color:var(--text);font-weight:600}
+.preorder-badge{
+position:absolute;top:1rem;right:1rem;font-size:0.65rem;font-weight:700;
+letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.6rem;border-radius:4px;
+background:rgba(245,158,11,0.15);color:var(--amber);border:1px solid rgba(245,158,11,0.25)
+}
+.card{
+background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;
+position:relative;overflow:hidden;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);cursor:default
+}
+.card::before{
+content:'';position:absolute;top:0;left:0;right:0;height:2px;
+background:linear-gradient(90deg,transparent,var(--teal),transparent);opacity:0;transition:opacity 0.3s
+}
+.card:hover{transform:translateY(-4px);border-color:var(--border-glow);
+box-shadow:0 20px 40px rgba(0,0,0,0.4),0 0 0 1px var(--border-glow);background:var(--bg-card-hover)
+}
+.card:hover::before{opacity:1}
+.card.hot::after{
+content:'🔥';position:absolute;top:1rem;right:1rem;font-size:1.1rem;opacity:0.8
+}
+.card-name{font-size:1.15rem;font-weight:700;color:var(--text);letter-spacing:-0.01em;margin-bottom:0.3rem}
+.card-tag{font-size:0.78rem;color:var(--teal);font-weight:500;margin-bottom:1rem;opacity:0.9}
+.card-spec{font-size:0.82rem;color:var(--text-dim);margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem}
+.card-spec::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--text-faint)}
+.card-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:1rem}
+.card-price{font-size:1.4rem;font-weight:800;color:var(--gold);letter-spacing:-0.02em}
+.card-price span{font-size:0.75rem;font-weight:500;color:var(--text-faint);margin-left:0.25rem;text-transform:uppercase;letter-spacing:0.05em}
+.card-cta{
+font-size:0.75rem;font-weight:600;color:var(--teal);text-transform:uppercase;
+letter-spacing:0.08em;opacity:0;transform:translateX(-8px);transition:all 0.3s
+}
+.card:hover .card-cta{opacity:1;transform:translateX(0)}
+.hidden{display:none}
+.footer{text-align:center;padding:2rem;color:var(--text-faint);font-size:0.75rem;border-top:1px solid var(--border)}
+@media(max-width:640px){
+.brand{font-size:2.2rem}
+.grid{grid-template-columns:1fr}
+.toggle-btn{font-size:0.75rem;padding:0.65rem 1rem}
+.customs-warning{flex-direction:column;gap:0.75rem}
+.crypto-header{flex-wrap:wrap}
+.address-box{flex-direction:column;align-items:flex-start;gap:0.75rem}
+}
+</style>
+</head>
+<body>
+<div class="hero">
+<div class="brand">Solace Peptides</div>
+<div class="subtitle">Curated Collection</div>
+<div class="divider"></div>
+<div class="shipping-badge">📦 Express Shipping — $35 AUD Flat Rate</div>
+<div class="toggle-wrap">
+<button class="toggle-btn active" onclick="showSection('single')" id="btn-single">Single Vials</button>
+<button class="toggle-btn" onclick="showSection('box')" id="btn-box">10-Vial Boxes</button>
+</div>
+</div>
+
+<div class="crypto-section">
+<div class="crypto-card">
+<div class="crypto-header">
+<span style="font-size:1.5rem">💠</span>
+<span class="crypto-title">Payment Address</span>
+<span class="crypto-sub">Crypto Only</span>
+</div>
+<div class="address-box">
+<span class="address-label">Send USDC</span>
+<span class="address-value" id="cryptoAddress">GnWUuKz3TnYgYP787WG3b2V1b7tcr3PqSJbKEvquDqRS</span>
+<button class="copy-btn" onclick="copyAddress()">Copy</button>
+</div>
+<div class="crypto-warnings">
+<div class="crypto-warn red">
+<span class="icon">🚨</span>
+<div><strong>USDC on Solana Network ONLY.</strong> Sending any other currency, token, or using any other network (Ethereum, BSC, Polygon, etc.) will result in <strong>permanent loss of funds</strong>. We cannot recover misdirected payments.</div>
+</div>
+<div class="crypto-warn">
+<span class="icon">⏳</span>
+<div><strong>Confirm before sending.</strong> Crypto transactions are irreversible. Double-check the address, token type (USDC), and network (Solana / SPL) before confirming. If you are unsure how to send USDC on Solana, do not proceed.</div>
+</div>
+<div class="crypto-warn">
+<span class="icon">📧</span>
+<div>After sending, email your <strong>transaction hash (TxID)</strong> and order details to confirm payment. Orders are processed once payment is verified on-chain.</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="grid-wrap">
+<div id="section-single">
+<div class="section-title">Single Vial Samplers — AUD</div>
+<div class="grid">
+<div class="card hot"><div class="card-name">Retatrutide</div><div class="card-tag">Triple G — GLP-1 / GIP / Glucagon</div><div class="card-spec">10mg / 1 vial</div><div class="card-footer"><div class="card-price">$110<span>AUD</span></div><div class="card-cta">Add →</div></div></div>
+<div class="card hot"><div class="card-name">Tirzepatide</div><div class="card-tag">Dual G — Mounjaro / Zepbound</div><div class="card-spec">10mg / 1 vial</div><div class="card-footer"><div class="card-price">$85<span>AUD</span></div><div class="card-cta">Add →</div></div></div>
+<div class="card"><div class="card-name">Semaglutide</div><div class="card-tag">The Gateway GLP-1</div><div class="card-spec">10mg / 1 vial</div><div class="card-footer"><div class="card-price">$90<span>AUD</span></div><div class="card-cta">Add →</div></div></div>
+<div class="card hot"><div class="card-name">MOTS-c</div><div class="card-tag">Mitochondrial Exercise Mimetics</div><div class="card-spec">10mg / 1 vial</div><div class="card-footer"><div class="card-price">$75<span>AUD</span></div><div class="card-cta">Add →</div></div></div>
+<div class="card hot"><div class="card-name">BPC-157</div><div class="card-tag">The Wolverine Peptide</div><div class="card-spec">5mg / 1 vial</div><div class="card-footer"><div class="card-price">$75<span>AUD</span></div><div class="card-cta">Add →</div></div></div>
+<div class="card hot"><div class="card-name">TB-500</div><div class="card-tag">Thymosin β4 — Systemic Repair</div><div class="card-spec">5mg / 1 vial</div><div class="card-footer"><div class="card-price">$75<span>AUD</span></div><div class="card-cta">Add →</div></div></div>
+<div class="card hot"><div class="card-name">BPC 5mg + TB 5mg</div><div class="card-tag">Wolverine Stack</div><div class="card-spec">10mg / 1 vial</div><div class="card-footer"><div class="card-price">$115<span>AUD</span></div><div class="card-cta">Add →</div></div></div>
+<div class="card"><div class="card-name">CJC-1295 (Mod GRF 1-29)</div><div class="card-tag">GH Pulse Amplifier</div><div class="card-spec">5mg / 1 vial</div><div class="card-footer"><div class="card-price">$70<span>AUD</span></div><div class="card-cta">Add →</div></div></div>
+<div class="card"><div class="card-name">Ipamorelin</div><div class="card-tag">Cleanest GH Secretagogue</div><div class="card-spec">5mg / 1 vial</div><div class="card-footer"><div class="card-price">$75<span>AUD</span></div><div class="card-cta">Add →</div></div></div>
+<div class="card"><div class="card-name">Tesamorelin</div><div class="card-tag">Visceral Fat Targeting</div><div class="card-spec">5mg / 1 vial</div><div class="card-footer"><div class="card-price">$115<span>AUD</span></div><div class="card-cta">Add →</div></div></div>
+<div class="card"><div class="card-name">Epithalon</div><div class="card-tag">Telomerase Activation</div><div class="card-spec">10mg / 1 vial</div><div class="card-footer"><div class="card-price">$65<span>AUD</span></div><div class="card-cta">Add →</div></div></div>
+<div class="card"><div class="card-name">Thymosin α1</div><div class="card-tag">Immune Modulation</div><div class="card-spec">5mg / 1 vial</div><div class="card-footer"><div class="card-price">$90<span>AUD</span></div><div class="card-cta">Add →</div></div></div>
+<div class="card hot"><div class="card-name">Selank</div><div class="card-tag">Nootropic / Anxiolytic</div><div class="card-spec">10mg / 1 vial</div><div class="card-footer"><div class="card-price">$80<span>AUD</span></div><div class="card-cta">Add →</div></div></div>
+<div class="card hot"><div class="card-name">NAD+</div><div class="card-tag">Cellular Energy / Sirtuins</div><div class="card-spec">500mg / 1 vial</div><div class="card-footer"><div class="card-price">$90<span>AUD</span></div><div class="card-cta">Add →</div></div></div>
+<div class="card"><div class="card-name">GHK-Cu</div><div class="card-tag">Copper Regeneration</div><div class="card-spec">50mg / 1 vial</div><div class="card-footer"><div class="card-price">$70<span>AUD</span></div><div class="card-cta">Add →</div></div></div>
+</div>
+</div>
+
+<div id="section-box" class="hidden">
+<div class="section-title">10-Vial Boxes — Pre-Order Only</div>
+<div class="customs-warning">
+<div class="icon">⚠️</div>
+<div class="body">
+<div class="head">Import Notice — Australian Customs</div>
+<p>Importing peptide compounds into Australia is <strong>highly risky</strong> due to strict Australian law and customs regulations. <strong>Every precaution has been taken</strong> in packaging and documentation, but we <strong>cannot guarantee</strong> that your order will make it through customs. By pre-ordering, you acknowledge this risk and accept that lost shipments are not eligible for refund. Order at your own discretion.</p>
+</div>
+</div>
+<div class="grid">
+<div class="card hot"><div class="preorder-badge">Pre-Order</div><div class="card-name">Retatrutide</div><div class="card-tag">Triple G — GLP-1 / GIP / Glucagon</div><div class="card-spec">10mg×10 vials</div><div class="card-footer"><div class="card-price">$185<span>USD</span></div><div class="card-cta">Pre-Order →</div></div></div>
+<div class="card hot"><div class="preorder-badge">Pre-Order</div><div class="card-name">Tirzepatide</div><div class="card-tag">Dual G — Mounjaro / Zepbound</div><div class="card-spec">10mg×10 vials</div><div class="card-footer"><div class="card-price">$120<span>USD</span></div><div class="card-cta">Pre-Order →</div></div></div>
+<div class="card"><div class="preorder-badge">Pre-Order</div><div class="card-name">Semaglutide</div><div class="card-tag">The Gateway GLP-1</div><div class="card-spec">10mg×10 vials</div><div class="card-footer"><div class="card-price">$120<span>USD</span></div><div class="card-cta">Pre-Order →</div></div></div>
+<div class="card hot"><div class="preorder-badge">Pre-Order</div><div class="card-name">MOTS-c</div><div class="card-tag">Mitochondrial Exercise Mimetics</div><div class="card-spec">10mg×10 vials</div><div class="card-footer"><div class="card-price">$100<span>USD</span></div><div class="card-cta">Pre-Order →</div></div></div>
+<div class="card hot"><div class="preorder-badge">Pre-Order</div><div class="card-name">BPC-157</div><div class="card-tag">The Wolverine Peptide</div><div class="card-spec">5mg×10 vials</div><div class="card-footer"><div class="card-price">$85<span>USD</span></div><div class="card-cta">Pre-Order →</div></div></div>
+<div class="card hot"><div class="preorder-badge">Pre-Order</div><div class="card-name">TB-500</div><div class="card-tag">Thymosin β4 — Systemic Repair</div><div class="card-spec">5mg×10 vials</div><div class="card-footer"><div class="card-price">$130<span>USD</span></div><div class="card-cta">Pre-Order →</div></div></div>
+<div class="card hot"><div class="preorder-badge">Pre-Order</div><div class="card-name">BPC 5mg + TB 5mg</div><div class="card-tag">Wolverine Stack</div><div class="card-spec">10mg×10 vials</div><div class="card-footer"><div class="card-price">$170<span>USD</span></div><div class="card-cta">Pre-Order →</div></div></div>
+<div class="card"><div class="preorder-badge">Pre-Order</div><div class="card-name">CJC-1295 (Mod GRF 1-29)</div><div class="card-tag">GH Pulse Amplifier</div><div class="card-spec">5mg×10 vials</div><div class="card-footer"><div class="card-price">$130<span>USD</span></div><div class="card-cta">Pre-Order →</div></div></div>
+<div class="card"><div class="preorder-badge">Pre-Order</div><div class="card-name">Ipamorelin</div><div class="card-tag">Cleanest GH Secretagogue</div><div class="card-spec">5mg×10 vials</div><div class="card-footer"><div class="card-price">$70<span>USD</span></div><div class="card-cta">Pre-Order →</div></div></div>
+<div class="card"><div class="preorder-badge">Pre-Order</div><div class="card-name">Tesamorelin</div><div class="card-tag">Visceral Fat Targeting</div><div class="card-spec">5mg×10 vials</div><div class="card-footer"><div class="card-price">$170<span>USD</span></div><div class="card-cta">Pre-Order →</div></div></div>
+<div class="card"><div class="preorder-badge">Pre-Order</div><div class="card-name">Epithalon</div><div class="card-tag">Telomerase Activation</div><div class="card-spec">10mg×10 vials</div><div class="card-footer"><div class="card-price">$65<span>USD</span></div><div class="card-cta">Pre-Order →</div></div></div>
+<div class="card"><div class="preorder-badge">Pre-Order</div><div class="card-name">Thymosin α1</div><div class="card-tag">Immune Modulation</div><div class="card-spec">5mg×10 vials</div><div class="card-footer"><div class="card-price">$150<span>USD</span></div><div class="card-cta">Pre-Order →</div></div></div>
+<div class="card hot"><div class="preorder-badge">Pre-Order</div><div class="card-name">Selank</div><div class="card-tag">Nootropic / Anxiolytic</div><div class="card-spec">10mg×10 vials</div><div class="card-footer"><div class="card-price">$170<span>USD</span></div><div class="card-cta">Pre-Order →</div></div></div>
+<div class="card hot"><div class="preorder-badge">Pre-Order</div><div class="card-name">NAD+</div><div class="card-tag">Cellular Energy / Sirtuins</div><div class="card-spec">500mg×10 vials</div><div class="card-footer"><div class="card-price">$150<span>USD</span></div><div class="card-cta">Pre-Order →</div></div></div>
+<div class="card"><div class="preorder-badge">Pre-Order</div><div class="card-name">GHK-Cu</div><div class="card-tag">Copper Regeneration</div><div class="card-spec">50mg×10 vials</div><div class="card-footer"><div class="card-price">$70<span>USD</span></div><div class="card-cta">Pre-Order →</div></div></div>
+</div>
+</div>
+</div>
+
+<div class="footer">
+<p><strong>Solace Peptides</strong> — For Research Use Only. Not for human consumption.</p>
+<p style="margin-top:0.4rem">Single vials priced in AUD. Box pre-orders priced in USD. Express shipping $35 AUD. Crypto payments only.</p>
+</div>
+
+<script>
+function showSection(section){
+var single=document.getElementById('section-single');
+var box=document.getElementById('section-box');
+var btnSingle=document.getElementById('btn-single');
+var btnBox=document.getElementById('btn-box');
+if(section==='single'){
+single.classList.remove('hidden');box.classList.add('hidden');
+btnSingle.classList.add('active');btnBox.classList.remove('active');
+}else{
+single.classList.add('hidden');box.classList.remove('hidden');
+btnSingle.classList.remove('active');btnBox.classList.add('active');
+}
+}
+function copyAddress(){
+var addr=document.getElementById('cryptoAddress').textContent;
+navigator.clipboard.writeText(addr).then(function(){
+var btn=document.querySelector('.copy-btn');
+btn.textContent='Copied!';
+btn.style.background='rgba(45,212,191,0.2)';
+btn.style.color='#2dd4bf';
+setTimeout(function(){
+btn.textContent='Copy';
+btn.style.background='rgba(139,92,246,0.15)';
+btn.style.color='#a78bfa';
+},2000);
+});
+}
+</script>
+</body>
+</html>
